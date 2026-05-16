@@ -1,0 +1,98 @@
+# DFM Inspector - Manufacturing Rules Configuration
+# Based on Amazon Robotics design guidelines and industry standards
+
+general:
+  units: mm
+  tolerance_default: 0.1
+
+cnc_machining:
+  wall_thickness:
+    min_aluminum: 0.8
+    min_steel: 1.0
+    optimal: 2.0
+  part_size:
+    standard_envelope: 500  # mm
+    large_format: 1000
+  corner_radii:
+    rule: "1/3 pocket depth or 0.5mm minimum"
+  tolerances:
+    standard: "ISO 2768-m"
+    tight: 0.05
+  surface_finish:
+    standard: 3.2  # Ra μm
+    fine: 1.6
+
+sheet_metal:
+  specification: "930-00172_R01"
+  thickness:
+    min_steel: 0.5
+    min_aluminum: 0.8
+    optimal_range: [0.9, 3.0]
+  bend_radius:
+    steel: "1× thickness"
+    aluminum_5052: "1× thickness"
+    aluminum_6061: "2× thickness"
+    stainless: "2× thickness"
+  hole_to_edge: "2× thickness or 2.5mm minimum"
+  flange_length: "4× thickness or 12.7mm minimum"
+
+welding:
+  specification: "960-00169_R01"
+  standards:
+    aws_d1_1: "Carbon/low alloy steels ≥3mm"
+    aws_d1_2: "Aluminum structural alloys"
+    aws_d1_3: "Sheet steels <5mm"
+    aws_d1_6: "Stainless steel ≥1.5mm"
+  groove_angle:
+    carbon_steel: "50-60°"
+    aluminum: "60-65°"
+    stainless: "55-60°"
+  weld_access:
+    min_gun_angle: 45
+
+injection_molding:
+  specification: "930-00164_R01"
+  wall_thickness:
+    abs: [1.0, 3.5]
+    polycarbonate: [1.0, 4.0]
+    nylon: [0.75, 3.0]
+    pp: [0.8, 3.5]
+  draft_angle:
+    smooth: 1.0
+    textured: 3.0
+  rib_design:
+    thickness_ratio: 0.6  # of wall
+    max_height_ratio: 3.0  # of wall
+
+die_casting:
+  specification: "930-00166_R01"
+  wall_thickness:
+    hpdc:
+      aluminum: [1.0, 6.0]
+      zinc: [0.75, 4.0]
+    lpdc: [2.0, 10.0]
+    gravity: [3.0, 15.0]
+  draft_angle:
+    hpdc: 1.0
+    lpdc: 1.5
+    gravity: 2.0
+  fillet_radii:
+    hpdc: 0.5
+    lpdc: 1.0
+    gravity: 1.5
+
+wire_forming:
+  diameter_range: [0.5, 12.0]
+  bend_radius: "3× wire diameter minimum"
+  leg_length: "3× wire diameter minimum"
+  springback:
+    steel: "4-8°"
+    stainless: "6-10°"
+    aluminum: "2-4°"
+
+vacuum_forming:
+  sheet_thickness: [0.5, 6.0]
+  draft_angle:
+    female: 2.0
+    male: 3.0
+  max_draw_ratio: 0.5
